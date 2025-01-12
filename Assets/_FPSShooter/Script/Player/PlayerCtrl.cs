@@ -1,14 +1,40 @@
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class PlayerCtrl : ResetMonoBehaviour
 {
+    #region Variable Components
     public PlayerInputSystem_Actions controls { get; private set; }
 
+    public CharacterController CharacterController => characterController;
     [SerializeField] protected CharacterController characterController;
-    [SerializeField] protected Animator animator;
+
+    public Animator Anim => anim;
+    [SerializeField] protected Animator anim;
+
+    public PlayerAnimationEvents PlayerAnimationEvents => playerAnimationEvents;
+    [SerializeField] protected PlayerAnimationEvents playerAnimationEvents;
+
+    public PlayerAimController PlayerAimController => playerAimController;
+    [SerializeField] protected PlayerAimController playerAimController;
+
+    public PlayerMovement PlayerMovement => playerMovement;
     [SerializeField] protected PlayerMovement playerMovement;
+
+    public PlayerAttack PlayerAttack => playerAttack;
     [SerializeField] protected PlayerAttack playerAttack;
+
+    public PlayerWeaponController PlayerWeaponController => playerWeaponController;
+    [SerializeField] protected PlayerWeaponController playerWeaponController;
+
+    public PlayerWeaponVisuals PlayerWeaponVisuals => playerWeaponVisuals;
+    [SerializeField] protected PlayerWeaponVisuals playerWeaponVisuals;
+
+    public PlayerInteraction PlayerInteraction => playerInteraction;
+    [SerializeField] protected PlayerInteraction playerInteraction;
+
+    public PlayerSoundFX PlayerSoundFX => playerSoundFX;
+    [SerializeField] protected PlayerSoundFX playerSoundFX;
+    #endregion
 
     protected override void Awake()
     {
@@ -18,7 +44,7 @@ public class PlayerCtrl : ResetMonoBehaviour
     }
 
 
-   
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -39,8 +65,14 @@ public class PlayerCtrl : ResetMonoBehaviour
 
         this.LoadCharacterController();
         this.LoadAnimator();
+        this.LoadPlayerAnimationEvents();
+        this.LoadPlayerAimController();
         this.LoadPlayerMovement();
         this.LoadPlayerAttack();
+        this.LoadPlayerWeaponController();
+        this.LoadPlayerWeaponVisuals();
+        this.LoadPlayerInteraction();
+        this.LoadPlayerSoundFX();
     }
 
     protected virtual void LoadCharacterController()
@@ -52,11 +84,28 @@ public class PlayerCtrl : ResetMonoBehaviour
     }
     protected virtual void LoadAnimator()
     {
-        if (this.animator != null) return;
+        if (this.anim != null) return;
 
-        this.animator = GetComponentInChildren<Animator>();
+        this.anim = GetComponentInChildren<Animator>();
         Debug.LogWarning(transform.name + ": LoadAnimator", gameObject);
     }
+
+    protected virtual void LoadPlayerAnimationEvents()
+    {
+        if (this.playerAnimationEvents != null) return;
+
+        this.playerAnimationEvents = GetComponentInChildren<PlayerAnimationEvents>();
+        Debug.LogWarning(transform.name + ": LoadPlayerAnimationEvents", gameObject);
+    }
+
+    protected virtual void LoadPlayerAimController()
+    {
+        if (this.playerAimController != null) return;
+
+        this.playerAimController = GetComponentInChildren<PlayerAimController>();
+        Debug.LogWarning(transform.name + ": LoadPlayerAimController", gameObject);
+    }
+
     protected virtual void LoadPlayerMovement()
     {
         if (this.playerMovement != null) return;
@@ -64,12 +113,45 @@ public class PlayerCtrl : ResetMonoBehaviour
         this.playerMovement = GetComponentInChildren<PlayerMovement>();
         Debug.LogWarning(transform.name + ": LoadPlayerMovement", gameObject);
     }
+
     protected virtual void LoadPlayerAttack()
     {
         if (this.playerAttack != null) return;
 
         this.playerAttack = GetComponentInChildren<PlayerAttack>();
         Debug.LogWarning(transform.name + ": LoadPlayerAttack", gameObject);
+    }
+
+    protected virtual void LoadPlayerWeaponController()
+    {
+        if (this.playerWeaponController != null) return;
+
+        this.playerWeaponController = GetComponentInChildren<PlayerWeaponController>();
+        Debug.LogWarning(transform.name + ": LoadPlayerWeaponController", gameObject);
+    }
+
+    protected virtual void LoadPlayerWeaponVisuals()
+    {
+        if (this.playerWeaponVisuals != null) return;
+
+        this.playerWeaponVisuals = GetComponentInChildren<PlayerWeaponVisuals>();
+        Debug.LogWarning(transform.name + ": LoadPlayerWeaponVisuals", gameObject);
+    }
+
+    protected virtual void LoadPlayerInteraction()
+    {
+        if (this.playerInteraction != null) return;
+
+        this.playerInteraction = GetComponentInChildren<PlayerInteraction>();
+        Debug.LogWarning(transform.name + ": LoadPlayerInteraction", gameObject);
+    }
+
+    protected virtual void LoadPlayerSoundFX()
+    {
+        if (this.playerSoundFX != null) return;
+
+        this.playerSoundFX = GetComponentInChildren<PlayerSoundFX>();
+        Debug.LogWarning(transform.name + ": LoadPlayerSoundFX", gameObject);
     }
     #endregion
 }

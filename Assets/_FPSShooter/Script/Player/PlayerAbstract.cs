@@ -4,7 +4,20 @@ public class PlayerAbstract : ResetMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
 
+    protected override void Start()
+    {
+        base.Start();
 
+        this.AssignInputEvents();
+    }
+
+    protected virtual void AssignInputEvents()
+    {
+
+    }
+
+
+    #region LoadComponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -19,4 +32,5 @@ public class PlayerAbstract : ResetMonoBehaviour
         this.playerCtrl=GetComponentInParent<PlayerCtrl>();
         Debug.LogWarning(transform.name + ": LoadPlayerCtrl", gameObject);
     }
+    #endregion
 }

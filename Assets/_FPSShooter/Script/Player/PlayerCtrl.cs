@@ -34,6 +34,9 @@ public class PlayerCtrl : ResetMonoBehaviour
 
     public PlayerSoundFX PlayerSoundFX => playerSoundFX;
     [SerializeField] protected PlayerSoundFX playerSoundFX;
+
+    public WeaponHolder WeaponHolder => weaponHolder;
+    [SerializeField] protected WeaponHolder weaponHolder;
     #endregion
 
     protected override void Awake()
@@ -73,6 +76,7 @@ public class PlayerCtrl : ResetMonoBehaviour
         this.LoadPlayerWeaponVisuals();
         this.LoadPlayerInteraction();
         this.LoadPlayerSoundFX();
+        this.LoadWeaponHolder();
     }
 
     protected virtual void LoadCharacterController()
@@ -152,6 +156,14 @@ public class PlayerCtrl : ResetMonoBehaviour
 
         this.playerSoundFX = GetComponentInChildren<PlayerSoundFX>();
         Debug.LogWarning(transform.name + ": LoadPlayerSoundFX", gameObject);
+    }
+
+    protected virtual void LoadWeaponHolder()
+    {
+        if (this.weaponHolder != null) return;
+
+        this.weaponHolder = GetComponentInChildren<WeaponHolder>();
+        Debug.LogWarning(transform.name + ": LoadWeaponHolder", gameObject);
     }
     #endregion
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerCtrl : ResetMonoBehaviour
 {
     #region Variable Components
-    public PlayerInputSystem_Actions controls { get; private set; }
+    public InputSystem_Actions controls { get; private set; }
 
     public CharacterController CharacterController => characterController;
     [SerializeField] protected CharacterController characterController;
@@ -29,6 +30,7 @@ public class PlayerCtrl : ResetMonoBehaviour
     public PlayerWeaponVisuals PlayerWeaponVisuals => playerWeaponVisuals;
     [SerializeField] protected PlayerWeaponVisuals playerWeaponVisuals;
 
+
     public PlayerInteraction PlayerInteraction => playerInteraction;
     [SerializeField] protected PlayerInteraction playerInteraction;
 
@@ -37,13 +39,24 @@ public class PlayerCtrl : ResetMonoBehaviour
 
     public WeaponHolder WeaponHolder => weaponHolder;
     [SerializeField] protected WeaponHolder weaponHolder;
+
+
+    [Header("Animation Rig")]
+    public Rig Rig => rig;
+    [SerializeField] protected Rig rig;
+
+    public TwoBoneIKConstraint LeftHandIK => leftHandIK;
+    [SerializeField] protected TwoBoneIKConstraint leftHandIK;
+    public Transform LeftHandIKTarget => leftHandIKTarget;
+    [SerializeField] protected Transform leftHandIKTarget;
+
     #endregion
 
     protected override void Awake()
     {
         base.Awake();
 
-        controls = new PlayerInputSystem_Actions();
+        controls = new InputSystem_Actions();
     }
 
 
@@ -77,6 +90,9 @@ public class PlayerCtrl : ResetMonoBehaviour
         this.LoadPlayerInteraction();
         this.LoadPlayerSoundFX();
         this.LoadWeaponHolder();
+        this.LoadRig();
+        this.LoadLeftHandIK();
+        this.LoadLeftHandIKTarget();
     }
 
     protected virtual void LoadCharacterController()
@@ -164,6 +180,30 @@ public class PlayerCtrl : ResetMonoBehaviour
 
         this.weaponHolder = GetComponentInChildren<WeaponHolder>();
         Debug.LogWarning(transform.name + ": LoadWeaponHolder", gameObject);
+    }
+
+    protected virtual void LoadRig()
+    {
+        if (this.rig != null) return;
+
+        this.rig = GetComponentInChildren<Rig>();
+        Debug.LogWarning(transform.name + ": LoadRig", gameObject);
+    }
+
+    protected virtual void LoadLeftHandIK()
+    {
+        if (this.leftHandIK != null) return;
+
+        this.leftHandIK = GetComponentInChildren<TwoBoneIKConstraint>();
+        Debug.LogWarning(transform.name + ": LoadLeftHandIK", gameObject);
+    }
+
+    protected virtual void LoadLeftHandIKTarget()
+    {
+        if (this.leftHandIKTarget != null) return;
+
+        this.leftHandIKTarget = GameObject.Find("LeftHand_IK_Target").transform;
+        Debug.LogWarning(transform.name + ": LoadRig", gameObject);
     }
     #endregion
 }

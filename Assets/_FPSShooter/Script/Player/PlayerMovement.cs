@@ -24,6 +24,7 @@ public class PlayerMovement : PlayerAbstract
     protected virtual void Update()
     {
         this.ApplyMovement();
+        this.ApplyRotation();
         this.AnimationControllers();
     }
 
@@ -38,7 +39,6 @@ public class PlayerMovement : PlayerAbstract
             this.playerCtrl.CharacterController.Move(this.movementDirection * Time.deltaTime * speed);
         }
     }
-
     protected virtual void ApplyGravity()
     {
         if (this.playerCtrl.CharacterController.isGrounded == false)
@@ -50,6 +50,16 @@ public class PlayerMovement : PlayerAbstract
         {
             this.verticalVelocity = -.5f;
         }
+    }
+
+    protected virtual void ApplyRotation()
+    {
+        Vector3 lookingDirection = this.playerCtrl.PlayerAimController.GetMouseHitInfo().point - transform.position;
+        lookingDirection.y = 0f;
+        lookingDirection.Normalize();
+
+        Quaternion desiredRotation=Quaternion.LookRotation(lookingDirection);
+        this.playerCtrl.transform.rotation = Quaternion.Slerp(this.playerCtrl.transform.rotation, desiredRotation, this.turnSpeed * Time.deltaTime);
     }
 
     protected virtual void AnimationControllers()
@@ -70,19 +80,19 @@ public class PlayerMovement : PlayerAbstract
     {
         base.AssignInputEvents();
 
-        this.controls.Player.Move.performed += context => this.moveInput = context.ReadValue<Vector2>();
-        this.controls.Player.Move.canceled += context =>
+        this.controls.Character.Move.performed += context => this.moveInput = context.ReadValue<Vector2>();
+        this.controls.Character.Move.canceled += context =>
         {
             this.moveInput = Vector2.zero;
         };
 
 
-        this.controls.Player.Run.performed += context =>
+        this.controls.Character.Run.performed += context =>
         {
             this.speed = this.runSpeed;
             this.isRunning = true;
         };
-        this.controls.Player.Run.canceled += context =>
+        this.controls.Character.Run.canceled += context =>
         {
             this.speed = this.walkSpeed;
             this.isRunning = false;

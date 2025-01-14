@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAbstract : ResetMonoBehaviour
 {
-    protected PlayerInputSystem_Actions controls;
+    protected InputSystem_Actions controls;
 
     [SerializeField] protected PlayerCtrl playerCtrl;
 

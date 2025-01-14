@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponHolder : ResetMonoBehaviour
 {
-    [SerializeField] protected List<WeaponModel> weaponModels = new List<WeaponModel>();
-    public List<WeaponModel> WeaponModels => weaponModels;
+    [SerializeField] protected WeaponModel[] weaponModels;
+    public WeaponModel[] WeaponModels => weaponModels;
 
     #region LoadComponents
     protected override void LoadComponents()
@@ -17,9 +17,9 @@ public class WeaponHolder : ResetMonoBehaviour
 
     protected virtual void LoadWeaponModels()
     {
-        if (this.weaponModels.Count > 0) return;
+        if (this.weaponModels.Length > 0) return;
 
-        this.weaponModels = GetComponentsInChildren<WeaponModel>().ToList();
+        this.weaponModels = GetComponentsInChildren<WeaponModel>(true);
         Debug.LogWarning(transform.name + ": LoadWeaponModels", gameObject);
     }
     #endregion

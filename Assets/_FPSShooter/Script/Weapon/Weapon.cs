@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum WeaponType
 {
-    Null = 0,
     Pistol = 1,
     Revolver = 2,
     AutoRifle = 3,
@@ -13,8 +12,8 @@ public enum WeaponType
 
 public enum ShootType
 {
-    Single,
-    Auto
+    Single=1,
+    Auto=2
 }
 
 [Serializable]

@@ -7,6 +7,8 @@ public class WeaponData : ScriptableObject
 
     public WeaponType weaponType;
     public ShootType shootType;
+    public EquipType equipType ;
+    public HoldType holdType;
 
     [Header("Bullet info")]
     public int bulletDamage;

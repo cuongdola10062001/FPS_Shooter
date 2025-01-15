@@ -1475,7 +1475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &459116399
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,9 +1509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefd97eca1281f4b800e8223299de70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 2
-  equipType: 1
-  holdType: 1
+  weaponData: {fileID: 11400000, guid: 1612d7b285cb79a41a02102100e5cd34, type: 2}
   gunPoint: {fileID: 1678639332}
   holdPoint: {fileID: 1294412841}
   fireSFX: {fileID: 755955766}
@@ -2462,9 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefd97eca1281f4b800e8223299de70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 5
-  equipType: 2
-  holdType: 3
+  weaponData: {fileID: 11400000, guid: b7df1ebd299e4354580ad0a6d3b7f4c5, type: 2}
   gunPoint: {fileID: 850180823}
   holdPoint: {fileID: 2039399570}
   fireSFX: {fileID: 121290204}
@@ -2516,7 +2512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &792903180
 Transform:
   m_ObjectHideFlags: 0
@@ -2550,9 +2546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefd97eca1281f4b800e8223299de70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 1
-  equipType: 1
-  holdType: 1
+  weaponData: {fileID: 11400000, guid: f27e6366a841f944c8c399bc42006978, type: 2}
   gunPoint: {fileID: 2043174539}
   holdPoint: {fileID: 226126840}
   fireSFX: {fileID: 1842696909}
@@ -3083,9 +3077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefd97eca1281f4b800e8223299de70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 4
-  equipType: 1
-  holdType: 2
+  weaponData: {fileID: 11400000, guid: 7bea08a3bbee1034a85a66b5be4d9b44, type: 2}
   gunPoint: {fileID: 1750617699}
   holdPoint: {fileID: 369619179}
   fireSFX: {fileID: 335167573}
@@ -3522,7 +3514,7 @@ GameObject:
   - component: {fileID: 1445147212}
   - component: {fileID: 1445147213}
   m_Layer: 0
-  m_Name: AutoRifle
+  m_Name: Auto-Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3561,9 +3553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefd97eca1281f4b800e8223299de70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 3
-  equipType: 2
-  holdType: 1
+  weaponData: {fileID: 11400000, guid: 9b7ebf91e433cf04dbfcf24aeb3af891, type: 2}
   gunPoint: {fileID: 1101697783}
   holdPoint: {fileID: 1309637663}
   fireSFX: {fileID: 1026829208}

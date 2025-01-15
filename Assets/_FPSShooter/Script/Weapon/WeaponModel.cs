@@ -2,13 +2,11 @@ using UnityEngine;
 
 public enum EquipType
 {
-    Null = 0,
     SideEquipAnimation = 1,
     BackEquipAnimation = 2
 };
 public enum HoldType
 {
-    Null = 0,
     CommonHold = 1,
     LowHold = 2,
     HighHold = 3
@@ -16,9 +14,7 @@ public enum HoldType
 
 public class WeaponModel : ResetMonoBehaviour
 {
-    public WeaponType weaponType = WeaponType.Null;
-    public EquipType equipType = EquipType.Null;
-    public HoldType holdType = HoldType.Null;
+    public WeaponData weaponData;
 
     public Transform gunPoint;
     public Transform holdPoint;
@@ -28,70 +24,84 @@ public class WeaponModel : ResetMonoBehaviour
     public AudioSource realodSFX;
 
 
+    private float fireRate;
+    private float lastShootTime;
+
+    private int ammoesInMagazine;
+    private int capacityOfEachMagazine;
+    private int totalReserveAmmo;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        this.fireRate = this.weaponData.fireRate;
+        this.ammoesInMagazine = this.weaponData.ammoesInMagazine;
+        this.capacityOfEachMagazine = this.weaponData.capacityOfEachMagazine;
+        this.totalReserveAmmo = this.weaponData.totalReserveAmmo;
+    }
+
+
+    public bool CanShoot() => this.HaveEnoughBullets() && this.ReadyToFire();
+    private bool ReadyToFire()
+    {
+        if (Time.time > this.lastShootTime + 1 / this.fireRate)
+        {
+            this.lastShootTime = Time.time;
+            return true;
+        }
+        return false;
+    }
+    private bool HaveEnoughBullets() => this.ammoesInMagazine > 0;
+
+
+
+    public bool CanReload()
+    {
+        if (this.ammoesInMagazine == this.capacityOfEachMagazine)
+            return false;
+
+        if (this.totalReserveAmmo > 0)
+            return true;
+
+        return false;
+    }
+    public void RefillBullets()
+    {
+        int bulletsToReload = this.capacityOfEachMagazine;
+
+        if (bulletsToReload > totalReserveAmmo)
+        {
+            bulletsToReload = totalReserveAmmo;
+        }
+
+        totalReserveAmmo -= bulletsToReload;
+        this.ammoesInMagazine = bulletsToReload;
+
+        if (this.totalReserveAmmo < 0)
+            this.totalReserveAmmo = 0;
+    }
+
     #region LoadComponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
 
-        this.LoadWeaponType();
-        this.LoadEquipType();
-        this.LoadHoldType();
+        this.LoadWeaponData();
         this.LoadGunPoint();
         this.LoadHoldPoint();
         this.LoadFireSFX();
         this.LoadRealodSFX();
     }
 
-    protected virtual void LoadWeaponType()
+    protected virtual void LoadWeaponData()
     {
-        if (this.weaponType != WeaponType.Null) return;
+        if (this.weaponData != null) return;
 
-        this.weaponType = System.Enum.TryParse(gameObject.name, out WeaponType parsedType) ? parsedType : WeaponType.Null;
-        Debug.LogWarning(transform.name + ": LoadWeaponType", gameObject);
-    }
+        string resPath = "Weapon/" + "Weapon_" + transform.name;
+        this.weaponData = Resources.Load<WeaponData>(resPath);
 
-    protected virtual void LoadEquipType()
-    {
-        if (this.equipType != EquipType.Null) return;
-
-        if (this.weaponType == WeaponType.Pistol || this.weaponType == WeaponType.Revolver || this.weaponType == WeaponType.Shotgun)
-        {
-            this.equipType = EquipType.SideEquipAnimation;
-        }
-        else if (this.weaponType == WeaponType.AutoRifle || this.weaponType == WeaponType.Rifle)
-        {
-            this.equipType = EquipType.BackEquipAnimation;
-        }
-        else
-        {
-            this.equipType = EquipType.Null;
-        }
-
-        Debug.LogWarning(transform.name + ": LoadEquipType", gameObject);
-    }
-
-    protected virtual void LoadHoldType()
-    {
-        if (this.holdType != HoldType.Null) return;
-
-        if (this.weaponType == WeaponType.Pistol || this.weaponType == WeaponType.Revolver || this.weaponType == WeaponType.AutoRifle)
-        {
-            this.holdType = HoldType.CommonHold;
-        }
-        else if (this.weaponType == WeaponType.Shotgun)
-        {
-            this.holdType = HoldType.LowHold;
-        }
-        else if (this.weaponType == WeaponType.Rifle)
-        {
-            this.holdType = HoldType.HighHold;
-        }
-        else
-        {
-            this.holdType = HoldType.Null;
-        }
-
-        Debug.LogWarning(transform.name + ": LoadHoldType", gameObject);
+        Debug.LogWarning(transform.name + ": LoadWeaponData", gameObject);
     }
 
     protected virtual void LoadGunPoint()

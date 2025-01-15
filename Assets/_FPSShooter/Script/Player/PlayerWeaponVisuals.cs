@@ -36,7 +36,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
 
     public void PlayWeaponEquipAnimation()
     {
-        EquipType equipType = CurrentWeaponModel().equipType;
+        EquipType equipType = CurrentWeaponModel().weaponData.equipType;
 
         float equipmentSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.equipmentSpeed;
 
@@ -49,7 +49,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
 
     public void SwitchOnCurrentWeaponModel()
     {
-        int animationIndex = ((int)CurrentWeaponModel().holdType);
+        int animationIndex = ((int)CurrentWeaponModel().weaponData.holdType);
 
         this.SwitchOffWeaponModels();
         /*SwitchOffBackupWeaponModels();
@@ -129,7 +129,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
 
         for (int i = 0; i <this.playerCtrl.WeaponHolder.WeaponModels.Length; i++)
         {
-            if (this.playerCtrl.WeaponHolder.WeaponModels[i].weaponType == weaponType)
+            if (this.playerCtrl.WeaponHolder.WeaponModels[i].weaponData.weaponType == weaponType)
                 weaponModel = this.playerCtrl.WeaponHolder.WeaponModels[i];
         }
 

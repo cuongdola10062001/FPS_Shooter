@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23bbc873269592744ab88e96d8a7551d, type: 3}
+  m_Name: Weapon_Shotgun
+  m_EditorClassIdentifier: 
+  weaponName: Shotgun G7
+  weaponType: 4
+  shootType: 1
+  equipType: 1
+  holdType: 2
+  bulletDamage: 21
+  bulletsPerShot: 5
+  fireRate: 2
+  ammoesInMagazine: 20
+  capacityOfEachMagazine: 20
+  totalReserveAmmo: 80
+  reloadSpeed: 1
+  equipmentSpeed: 1
+  gunDistance: 25
+  cameraDistance: 6
+  weaponIcon: {fileID: 1123339388, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
+  weaponInfo: It's like rifle, but an opposite

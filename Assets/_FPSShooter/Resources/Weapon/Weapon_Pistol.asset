@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Heaven 567
   weaponType: 1
   shootType: 1
-  equipType: 1
+  equipType: 0
   holdType: 1
   bulletDamage: 18
   bulletsPerShot: 1

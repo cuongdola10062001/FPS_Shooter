@@ -2,8 +2,8 @@ using UnityEngine;
 
 public enum EquipType
 {
-    SideEquipAnimation = 1,
-    BackEquipAnimation = 2
+    SideEquipAnimation,
+    BackEquipAnimation
 };
 public enum HoldType
 {
@@ -11,6 +11,21 @@ public enum HoldType
     LowHold = 2,
     HighHold = 3
 };
+
+public enum WeaponType
+{
+    Pistol = 1,
+    Revolver = 2,
+    AutoRifle = 3,
+    Shotgun = 4,
+    Rifle = 5
+}
+
+public enum ShootType
+{
+    Single = 1,
+    Auto = 2
+}
 
 public class WeaponModel : ResetMonoBehaviour
 {
@@ -23,19 +38,30 @@ public class WeaponModel : ResetMonoBehaviour
     public AudioSource fireSFX;
     public AudioSource realodSFX;
 
+    [SerializeField] private int bulletDamage;
+    [SerializeField] private int bulletsPerShot;
+    public int BulletsPerShot=> bulletsPerShot;
 
-    private float fireRate;
-    private float lastShootTime;
+    [SerializeField] private float fireRate;
 
-    private int ammoesInMagazine;
-    private int capacityOfEachMagazine;
-    private int totalReserveAmmo;
+    [SerializeField] private int ammoesInMagazine;
+    [SerializeField] private int capacityOfEachMagazine;
+    [SerializeField] private int totalReserveAmmo;
+
+    [SerializeField] private float lastShootTime;
+
+    public void ReduceAmmoesInMagazine() => this.ammoesInMagazine--;
 
     protected override void Start()
     {
         base.Start();
 
+        this.bulletDamage = this.weaponData.bulletDamage;
+        this.bulletsPerShot = this.weaponData.bulletsPerShot;
         this.fireRate = this.weaponData.fireRate;
+
+
+
         this.ammoesInMagazine = this.weaponData.ammoesInMagazine;
         this.capacityOfEachMagazine = this.weaponData.capacityOfEachMagazine;
         this.totalReserveAmmo = this.weaponData.totalReserveAmmo;

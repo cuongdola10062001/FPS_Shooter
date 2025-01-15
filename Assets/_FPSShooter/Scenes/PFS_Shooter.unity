@@ -607,21 +607,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 759411674}
-  defaultWeaponData: []
-  currentWeapon:
-    weaponType: 0
-    shootType: 0
-    bulletDamage: 0
-    bulletsPerShot: 0
-    fireRate: 0
-    ammoesInMagazine: 0
-    capacityOfEachMagazine: 0
-    totalReserveAmmo: 0
-    reloadSpeed: 0
-    equipmentSpeed: 0
-    gunDistance: 0
-    cameraDistance: 0
-    weaponData: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  weaponReady: 0
   bulletImpactForce: 100
   bulletSpeed: 0
 --- !u!1 &223569003
@@ -1475,7 +1462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &459116399
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,6 +1501,13 @@ MonoBehaviour:
   holdPoint: {fileID: 1294412841}
   fireSFX: {fileID: 755955766}
   realodSFX: {fileID: 1823982891}
+  bulletDamage: 0
+  bulletsPerShot: 0
+  fireRate: 0
+  ammoesInMagazine: 0
+  capacityOfEachMagazine: 0
+  totalReserveAmmo: 0
+  lastShootTime: 0
 --- !u!1 &464240498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,7 +2419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &765669640
 Transform:
   m_ObjectHideFlags: 0
@@ -2465,6 +2459,13 @@ MonoBehaviour:
   holdPoint: {fileID: 2039399570}
   fireSFX: {fileID: 121290204}
   realodSFX: {fileID: 1073244548}
+  bulletDamage: 0
+  bulletsPerShot: 0
+  fireRate: 0
+  ammoesInMagazine: 0
+  capacityOfEachMagazine: 0
+  totalReserveAmmo: 0
+  lastShootTime: 0
 --- !u!1 &778578834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &792903180
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,6 +2552,13 @@ MonoBehaviour:
   holdPoint: {fileID: 226126840}
   fireSFX: {fileID: 1842696909}
   realodSFX: {fileID: 1477388890}
+  bulletDamage: 0
+  bulletsPerShot: 0
+  fireRate: 0
+  ammoesInMagazine: 0
+  capacityOfEachMagazine: 0
+  totalReserveAmmo: 0
+  lastShootTime: 0
 --- !u!1 &828574506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3043,7 +3051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1224529918
 Transform:
   m_ObjectHideFlags: 0
@@ -3082,6 +3090,13 @@ MonoBehaviour:
   holdPoint: {fileID: 369619179}
   fireSFX: {fileID: 335167573}
   realodSFX: {fileID: 739224484}
+  bulletDamage: 0
+  bulletsPerShot: 0
+  fireRate: 0
+  ammoesInMagazine: 0
+  capacityOfEachMagazine: 0
+  totalReserveAmmo: 0
+  lastShootTime: 0
 --- !u!1 &1242493928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3519,7 +3534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1445147212
 Transform:
   m_ObjectHideFlags: 0
@@ -3558,6 +3573,13 @@ MonoBehaviour:
   holdPoint: {fileID: 1309637663}
   fireSFX: {fileID: 1026829208}
   realodSFX: {fileID: 1873977305}
+  bulletDamage: 0
+  bulletsPerShot: 0
+  fireRate: 0
+  ammoesInMagazine: 0
+  capacityOfEachMagazine: 0
+  totalReserveAmmo: 0
+  lastShootTime: 0
 --- !u!1 &1477388888
 GameObject:
   m_ObjectHideFlags: 0

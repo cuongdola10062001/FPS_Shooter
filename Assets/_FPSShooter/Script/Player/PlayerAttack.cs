@@ -23,12 +23,12 @@ public class PlayerAttack : PlayerAbstract
 
         this.playerCtrl.PlayerWeaponVisuals.PlayFireAnimation();
 
-        if (this.playerCtrl.PlayerWeaponController.CurrentWeapon.shootType == ShootType.Single)
+        if (this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.shootType == ShootType.Single)
         {
             this.isShooting = false;
         }
 
-        if (this.playerCtrl.PlayerWeaponController.CurrentWeapon.bulletsPerShot > 1)
+        if (this.playerCtrl.PlayerWeaponController.CurrentWeapon.BulletsPerShot > 1)
         {
             StartCoroutine(this.FireBulletsPerShot());
 
@@ -44,20 +44,20 @@ public class PlayerAttack : PlayerAbstract
     {
         this.playerCtrl.PlayerWeaponController.SetWeaponReady(false);
 
-        for (int i = 1; i <= this.playerCtrl.PlayerWeaponController.CurrentWeapon.bulletsPerShot; i++)
+        for (int i = 1; i <= this.playerCtrl.PlayerWeaponController.CurrentWeapon.BulletsPerShot; i++)
         {
             this.FireSingleBullet();
 
             yield return new WaitForSeconds(0.1f);
 
-            if (i >= this.playerCtrl.PlayerWeaponController.CurrentWeapon.bulletsPerShot)
+            if (i >= this.playerCtrl.PlayerWeaponController.CurrentWeapon.BulletsPerShot)
                 this.playerCtrl.PlayerWeaponController.SetWeaponReady(true);
         }
     }
 
     private void FireSingleBullet()
     {
-        this.playerCtrl.PlayerWeaponController.CurrentWeapon.ammoesInMagazine--;
+        this.playerCtrl.PlayerWeaponController.CurrentWeapon.ReduceAmmoesInMagazine();
 
         Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.BulletSingle, this.playerCtrl.PlayerWeaponController.GunPoint().position, Quaternion.identity);
         newBullet.transform.rotation = Quaternion.LookRotation(this.playerCtrl.PlayerWeaponController.GunPoint().forward);

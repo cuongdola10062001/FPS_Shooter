@@ -11,7 +11,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
     [Header("Rig ")]
     [SerializeField] protected float rigWeightIncreaseRate = 2.75f;
     protected bool shouldIncrease_RigWeight;
-    protected Rig rig;
+    //protected Rig rig;
 
     [Header("Left hand IK")]
     [SerializeField] protected float leftHandIkWeightIncreaseRate = 2.5f;
@@ -27,7 +27,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
     public void PlayFireAnimation() =>this.playerCtrl.Anim.SetTrigger("Fire");
     public void PlayReloadAnimation()
     {
-        float reloadSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.reloadSpeed;
+        float reloadSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.reloadSpeed;
 
         this.playerCtrl.Anim.SetFloat("ReloadSpeed", reloadSpeed);
         this.playerCtrl.Anim.SetTrigger("Reload");
@@ -38,7 +38,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
     {
         EquipType equipType = CurrentWeaponModel().weaponData.equipType;
 
-        float equipmentSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.equipmentSpeed;
+        float equipmentSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.equipmentSpeed;
 
         this.playerCtrl.LeftHandIK.weight = 0;
         this.ReduceRigWeight();
@@ -52,12 +52,6 @@ public class PlayerWeaponVisuals : PlayerAbstract
         int animationIndex = ((int)CurrentWeaponModel().weaponData.holdType);
 
         this.SwitchOffWeaponModels();
-        /*SwitchOffBackupWeaponModels();
-
-
-        if (player.weapon.HasOnlyOneWeapon() == false)
-            SwitchOnBackupWeaponModel();*/
-
         this.SwitchAnimationLayer(animationIndex);
         this.CurrentWeaponModel().gameObject.SetActive(true);
         this.AttachLeftHand();
@@ -125,7 +119,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
     {
         WeaponModel weaponModel = null;
 
-        WeaponType weaponType = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponType;
+        WeaponType weaponType = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.weaponType;
 
         for (int i = 0; i <this.playerCtrl.WeaponHolder.WeaponModels.Length; i++)
         {
@@ -143,8 +137,8 @@ public class PlayerWeaponVisuals : PlayerAbstract
     {
         Transform targetTransform = CurrentWeaponModel().holdPoint;
 
-        this.playerCtrl.LeftHandIKTarget.localPosition = targetTransform.localPosition;
-        this.playerCtrl.LeftHandIKTarget.localRotation = targetTransform.localRotation;
+        this.playerCtrl.LeftHandIKTarget.position = CurrentWeaponModel().holdPoint.position;
+        this.playerCtrl.LeftHandIKTarget.rotation = CurrentWeaponModel().holdPoint.rotation;
     }
 
     protected virtual void UpdateLeftHandIKWeight()
@@ -161,15 +155,15 @@ public class PlayerWeaponVisuals : PlayerAbstract
     {
         if (shouldIncrease_RigWeight)
         {
-            rig.weight += rigWeightIncreaseRate * Time.deltaTime;
+            this.playerCtrl.Rig.weight += rigWeightIncreaseRate * Time.deltaTime;
 
-            if (rig.weight >= 1)
+            if (this.playerCtrl.Rig.weight >= 1)
                 shouldIncrease_RigWeight = false;
         }
     }
     protected virtual void ReduceRigWeight()
     {
-        rig.weight = .15f;
+        this.playerCtrl.Rig.weight = .15f;
     }
 
     public virtual void MaximizeRigWeight() => shouldIncrease_RigWeight = true;

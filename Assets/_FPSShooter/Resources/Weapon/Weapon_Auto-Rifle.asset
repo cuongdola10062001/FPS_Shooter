@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Blaster K-567
   weaponType: 3
   shootType: 2
-  equipType: 2
+  equipType: 1
   holdType: 1
   bulletDamage: 12
   bulletsPerShot: 1

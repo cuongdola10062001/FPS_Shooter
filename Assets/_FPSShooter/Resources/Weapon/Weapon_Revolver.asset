@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Bolt R-7
   weaponType: 2
   shootType: 1
-  equipType: 1
+  equipType: 0
   holdType: 1
   bulletDamage: 35
   bulletsPerShot: 1

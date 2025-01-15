@@ -374,6 +374,15 @@ AnimatorController:
     - serializedVersion: 2
       m_State: {fileID: -1425405987894363174}
       m_Motion: {fileID: 4141154273587616382}
+    - serializedVersion: 2
+      m_State: {fileID: 7791781409481312778}
+      m_Motion: {fileID: 7400000, guid: 6004822a93bc1a14a8bfedcaf323491c, type: 2}
+    - serializedVersion: 2
+      m_State: {fileID: 581495980684855416}
+      m_Motion: {fileID: -203655887218126122, guid: 4d3e26e14a6da1e4ebd68e50218920a5, type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: -1440275700228745964}
+      m_Motion: {fileID: -203655887218126122, guid: 4f074005aa5965849af43ca22ca44118, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 1

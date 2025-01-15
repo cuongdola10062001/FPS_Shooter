@@ -3,15 +3,9 @@ using UnityEngine.Animations.Rigging;
 
 public class PlayerWeaponVisuals : PlayerAbstract
 {
-
-    //[SerializeField] protected WeaponModel[] weaponModels;
-    //[SerializeField] protected BackupWeaponModel[] backupWeaponModels;
-
-
     [Header("Rig ")]
     [SerializeField] protected float rigWeightIncreaseRate = 2.75f;
     protected bool shouldIncrease_RigWeight;
-    //protected Rig rig;
 
     [Header("Left hand IK")]
     [SerializeField] protected float leftHandIkWeightIncreaseRate = 2.5f;
@@ -34,6 +28,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
         this.ReduceRigWeight();
     }
 
+    #region Weapon Equip Animation
     public void PlayWeaponEquipAnimation()
     {
         EquipType equipType = CurrentWeaponModel().weaponData.equipType;
@@ -63,6 +58,9 @@ public class PlayerWeaponVisuals : PlayerAbstract
             this.playerCtrl.WeaponHolder.WeaponModels[i].gameObject.SetActive(false);
         }
     }
+    #endregion
+
+
     /*private void SwitchOffBackupWeaponModels()
     {
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
@@ -143,7 +141,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
 
     protected virtual void UpdateLeftHandIKWeight()
     {
-        if (shouldIncrease_LeftHandIKWieght)
+        if (this.shouldIncrease_LeftHandIKWieght)
         {
             this.playerCtrl.LeftHandIK.weight += leftHandIkWeightIncreaseRate * Time.deltaTime;
 
@@ -153,7 +151,7 @@ public class PlayerWeaponVisuals : PlayerAbstract
     }
     protected virtual void UpdateRigWigth()
     {
-        if (shouldIncrease_RigWeight)
+        if (this.shouldIncrease_RigWeight)
         {
             this.playerCtrl.Rig.weight += rigWeightIncreaseRate * Time.deltaTime;
 
@@ -166,8 +164,8 @@ public class PlayerWeaponVisuals : PlayerAbstract
         this.playerCtrl.Rig.weight = .15f;
     }
 
-    public virtual void MaximizeRigWeight() => shouldIncrease_RigWeight = true;
-    public virtual void MaximizeLeftHandWeight() => shouldIncrease_LeftHandIKWieght = true;
+    public virtual void MaximizeRigWeight() => this.shouldIncrease_RigWeight = true;
+    public virtual void MaximizeLeftHandWeight() => this.shouldIncrease_LeftHandIKWieght = true;
 
     #endregion
 

@@ -4,13 +4,13 @@ public class PlayerAimController : PlayerAbstract
 {
     [SerializeField] protected LineRenderer aimLaser;
 
-    [Header("Aim control")]
+    /*[Header("Aim control")]
     public Transform Aim=> aim;
     [SerializeField] protected Transform aim;
 
     [Header("Camera control")]
     public Transform CameraTarget => cameraTarget;
-    [SerializeField] protected Transform cameraTarget;
+    [SerializeField] protected Transform cameraTarget;*/
     [Range(.5f, 1)]
     [SerializeField] protected float minCameraDistance = 1.5f;
     [Range(1, 3f)]
@@ -43,7 +43,7 @@ public class PlayerAimController : PlayerAbstract
     }
 
 
-    protected virtual void UpdateAimPosition()
+    /*protected virtual void UpdateAimPosition()
     {
         this.aim.position = this.GetMouseHitInfo().point;
 
@@ -69,7 +69,7 @@ public class PlayerAimController : PlayerAbstract
         desiredCameraPosition.y = transform.position.y + 1;
 
         return desiredCameraPosition;
-    }
+    }*/
 
     public virtual void EnableAimLaser(bool enable)=>this.aimLaser.enabled = enable;
 
@@ -101,8 +101,8 @@ public class PlayerAimController : PlayerAbstract
         base.LoadComponents();
 
         this.LoadAimLaser();
-        this.LoadAim();
-        this.LoadCameraTarget();
+       /* this.LoadAim();
+        this.LoadCameraTarget();*/
         this.LoadAimLayerMask();
     }
 
@@ -114,7 +114,7 @@ public class PlayerAimController : PlayerAbstract
         Debug.LogWarning(transform.name + ": LoadAimLaser", gameObject);
     }
 
-    protected virtual void LoadAim()
+    /*protected virtual void LoadAim()
     {
         if (this.aim != null) return;
 
@@ -128,7 +128,7 @@ public class PlayerAimController : PlayerAbstract
 
         this.cameraTarget = GameObject.Find("CameraFollowTarget").transform;
         Debug.LogWarning(transform.name + ": LoadCameraTarget", gameObject);
-    }
+    }*/
 
     protected virtual void LoadAimLayerMask()
     {

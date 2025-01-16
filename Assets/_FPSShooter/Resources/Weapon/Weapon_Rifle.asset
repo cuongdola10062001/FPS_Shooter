@@ -18,6 +18,7 @@ MonoBehaviour:
   equipType: 1
   holdType: 3
   bulletDamage: 80
+  shootingDistanceLimit: 8
   bulletsPerShot: 1
   fireRate: 1.5
   ammoesInMagazine: 12
@@ -26,6 +27,6 @@ MonoBehaviour:
   reloadSpeed: 1
   equipmentSpeed: 1
   gunDistance: 25
-  cameraDistance: 6
+  cameraDistance: 8
   weaponIcon: {fileID: -664407478, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
   weaponInfo: Good on a big distnace

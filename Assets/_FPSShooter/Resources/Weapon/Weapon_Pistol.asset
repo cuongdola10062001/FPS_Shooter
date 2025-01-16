@@ -18,6 +18,7 @@ MonoBehaviour:
   equipType: 0
   holdType: 1
   bulletDamage: 18
+  shootingDistanceLimit: 6
   bulletsPerShot: 1
   fireRate: 6
   ammoesInMagazine: 15
@@ -26,6 +27,6 @@ MonoBehaviour:
   reloadSpeed: 1
   equipmentSpeed: 1.55
   gunDistance: 25
-  cameraDistance: 6
+  cameraDistance: 7
   weaponIcon: {fileID: 1068215163, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
   weaponInfo: Quick to draw,Quick to use, Quick to Kill

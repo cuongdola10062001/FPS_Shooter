@@ -32,6 +32,7 @@ public class WeaponModel : ResetMonoBehaviour
     public WeaponData weaponData;
 
     public Transform gunPoint;
+    public Transform pointStartGunBarrel;
     public Transform holdPoint;
 
     [Header("Audio")]
@@ -66,6 +67,46 @@ public class WeaponModel : ResetMonoBehaviour
         this.capacityOfEachMagazine = this.weaponData.capacityOfEachMagazine;
         this.totalReserveAmmo = this.weaponData.totalReserveAmmo;
     }
+
+
+    #region Weapon spread variables
+    [Header("Spread ")]
+    private float baseSpread = 1;
+    private float maximumSpread = 3;
+    private float currentSpread = 2;
+
+    private float spreadIncreaseRate = .15f;
+
+    private float lastSpreadUpdateTime;
+    private float spreadCooldown = 1;
+
+    public Vector3 ApplySpread(Vector3 originalDirection)
+    {
+        UpdateSpread();
+
+        float randomizedValue = Random.Range(-currentSpread, currentSpread);
+
+        Quaternion spreadRotation = Quaternion.Euler(randomizedValue, randomizedValue / 2, randomizedValue);
+
+        return spreadRotation * originalDirection;
+    }
+
+    private void UpdateSpread()
+    {
+        if (Time.time > lastSpreadUpdateTime + spreadCooldown)
+            currentSpread = baseSpread;
+        else
+            IncreaseSpread();
+
+        lastSpreadUpdateTime = Time.time;
+    }
+
+    private void IncreaseSpread()
+    {
+        currentSpread = Mathf.Clamp(currentSpread + spreadIncreaseRate, baseSpread, maximumSpread);
+    }
+    #endregion
+
 
 
     public bool CanShoot() => this.HaveEnoughBullets() && this.ReadyToFire();
@@ -114,6 +155,7 @@ public class WeaponModel : ResetMonoBehaviour
         base.LoadComponents();
 
         this.LoadWeaponData();
+        this.LoadPointStartGunBarrel();
         this.LoadGunPoint();
         this.LoadHoldPoint();
         this.LoadFireSFX();
@@ -136,6 +178,14 @@ public class WeaponModel : ResetMonoBehaviour
 
         this.gunPoint = transform.Find("GunPoint");
         Debug.LogWarning(transform.name + ": LoadGunPoint", gameObject);
+    }
+
+    protected virtual void LoadPointStartGunBarrel()
+    {
+        if (this.pointStartGunBarrel != null) return;
+
+        this.pointStartGunBarrel = transform.Find("PointStartGunBarrel");
+        Debug.LogWarning(transform.name + ": LoadPointStartGunBarrel", gameObject);
     }
 
     protected virtual void LoadHoldPoint()

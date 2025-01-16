@@ -5,36 +5,35 @@ public class PlayerWeaponController : PlayerAbstract
     public WeaponModel CurrentWeapon => currentWeapon;
     [SerializeField] protected WeaponModel currentWeapon;
 
+    private bool weaponReady;
     public bool WeaponReady => weaponReady;
-    [SerializeField] protected bool weaponReady;
+    public void SetWeaponReady(bool ready)=> this.weaponReady = ready;
 
-    [Header("Bullet details")]
-    [SerializeField] protected float bulletImpactForce = 100;
-    [SerializeField] protected float bulletSpeed;
+    protected bool canEquip = false;
+    public bool CanEquip=>canEquip;
+    public void SetCanEquip(bool canEquip)=>this.canEquip = canEquip;
 
-    public void SetWeaponReady(bool ready)
-    {
-        this.weaponReady = ready;
-    }
-    public Transform GunPoint() => this.playerCtrl.PlayerWeaponVisuals.CurrentWeaponModel().gunPoint;
+
 
     protected override void Start()
     {
         base.Start();
 
-        this.weaponReady = true;//setting cho lan Equip dau tien
+        this.canEquip = true;
         this.EquipWeapon(0);
     }
 
 
     protected virtual void EquipWeapon(int i)
     {
-        if (this.weaponReady == false) return;
+        if (!this.canEquip) return;
         this.weaponReady = false;
+        this.canEquip = false;
 
         this.currentWeapon = this.playerCtrl.WeaponHolder.WeaponModels[i];
         this.playerCtrl.PlayerWeaponVisuals.PlayWeaponEquipAnimation();
 
+        CameraManager.Instance.ChangeCameraDistance(this.currentWeapon.weaponData.cameraDistance);
     }
 
     private void Reload()

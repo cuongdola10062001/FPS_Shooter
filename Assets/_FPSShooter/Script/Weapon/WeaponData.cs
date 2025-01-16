@@ -12,6 +12,7 @@ public class WeaponData : ScriptableObject
 
     [Header("Bullet info")]
     public int bulletDamage;
+    public float shootingDistanceLimit;
 
     [Header("Regular shot")]
     public int bulletsPerShot = 1;

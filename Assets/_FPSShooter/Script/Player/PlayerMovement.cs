@@ -9,6 +9,7 @@ public class PlayerMovement : PlayerAbstract
     protected float speed;
     protected float verticalVelocity;
 
+
     public Vector2 moveInput { get; protected set; }
     protected Vector3 movementDirection;
 

@@ -55,15 +55,35 @@ public class PlayerAttack : PlayerAbstract
         }
     }
 
+
     private void FireSingleBullet()
     {
         this.playerCtrl.PlayerWeaponController.CurrentWeapon.ReduceAmmoesInMagazine();
 
-        Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.BulletSingle, this.playerCtrl.PlayerWeaponController.GunPoint().position, Quaternion.identity);
-        newBullet.transform.rotation = Quaternion.LookRotation(this.playerCtrl.PlayerWeaponController.GunPoint().forward);
-        newBullet.gameObject.SetActive(true);
+        Transform gunPoint = this.playerCtrl.PlayerWeaponController.CurrentWeapon.gunPoint;
 
+        Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.BulletSingle, gunPoint.position, Quaternion.identity);
+        newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
+
+        Vector3 bulletDirection = this.playerCtrl.PlayerWeaponController.CurrentWeapon.ApplySpread(this.BulletDirection());
         BulletCtrl bulletCtrlScript = newBullet.GetComponent<BulletCtrl>();
+
+        WeaponData weaponData = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData;
+        bulletCtrlScript.Bullet.SetupBullet
+            (weaponData.bulletDamage, bulletDirection, weaponData.shootingDistanceLimit);
+
+        newBullet.gameObject.SetActive(true); // khi enable bullet se tu dong bay
+    }
+
+    public virtual Vector3 BulletDirection()
+    {
+        Vector3 pointStart = this.playerCtrl.PlayerWeaponController.CurrentWeapon.pointStartGunBarrel.position;
+        Vector3 pointEnd = this.playerCtrl.PlayerWeaponController.CurrentWeapon.gunPoint.position;
+
+        Vector3 direction = (pointEnd - pointStart).normalized;
+
+
+        return direction;
     }
 
     protected override void AssignInputEvents()

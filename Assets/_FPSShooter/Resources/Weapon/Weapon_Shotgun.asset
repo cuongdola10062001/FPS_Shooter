@@ -18,7 +18,8 @@ MonoBehaviour:
   equipType: 1
   holdType: 2
   bulletDamage: 21
-  bulletsPerShot: 5
+  shootingDistanceLimit: 4.5
+  bulletsPerShot: 6
   fireRate: 2
   ammoesInMagazine: 20
   capacityOfEachMagazine: 20
@@ -26,6 +27,6 @@ MonoBehaviour:
   reloadSpeed: 1
   equipmentSpeed: 1
   gunDistance: 25
-  cameraDistance: 6
+  cameraDistance: 5.5
   weaponIcon: {fileID: 1123339388, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
   weaponInfo: It's like rifle, but an opposite

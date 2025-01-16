@@ -22,6 +22,7 @@ public class PlayerAnimationEvents : PlayerAbstract
     public void WeaponEquipingIsOver()
     {
         this.playerCtrl.PlayerWeaponController.SetWeaponReady(true);
+        this.playerCtrl.PlayerWeaponController.SetCanEquip(true);
     }
 
     public void SwitchOnWeaponModel() => this.playerCtrl.PlayerWeaponVisuals.SwitchOnCurrentWeaponModel();

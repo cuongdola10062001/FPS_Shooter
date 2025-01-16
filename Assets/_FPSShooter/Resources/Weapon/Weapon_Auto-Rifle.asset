@@ -18,6 +18,7 @@ MonoBehaviour:
   equipType: 1
   holdType: 1
   bulletDamage: 12
+  shootingDistanceLimit: 6
   bulletsPerShot: 1
   fireRate: 8
   ammoesInMagazine: 32
@@ -26,6 +27,6 @@ MonoBehaviour:
   reloadSpeed: 1
   equipmentSpeed: 1
   gunDistance: 25
-  cameraDistance: 6
+  cameraDistance: 7
   weaponIcon: {fileID: -91878611, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
   weaponInfo: Good shreder for enemies

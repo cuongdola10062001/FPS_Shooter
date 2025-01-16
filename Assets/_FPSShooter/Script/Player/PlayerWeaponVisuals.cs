@@ -31,12 +31,13 @@ public class PlayerWeaponVisuals : PlayerAbstract
     #region Weapon Equip Animation
     public void PlayWeaponEquipAnimation()
     {
-        EquipType equipType = CurrentWeaponModel().weaponData.equipType;
+        EquipType equipType = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.equipType;
 
         float equipmentSpeed = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.equipmentSpeed;
 
         this.playerCtrl.LeftHandIK.weight = 0;
         this.ReduceRigWeight();
+
         this.playerCtrl.Anim.SetTrigger("EquipWeapon");
         this.playerCtrl.Anim.SetFloat("EquipType", ((float)equipType));
         this.playerCtrl.Anim.SetFloat("EquipSpeed", equipmentSpeed);
@@ -44,11 +45,11 @@ public class PlayerWeaponVisuals : PlayerAbstract
 
     public void SwitchOnCurrentWeaponModel()
     {
-        int animationIndex = ((int)CurrentWeaponModel().weaponData.holdType);
+        int animationIndex = ((int)this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.holdType);
 
         this.SwitchOffWeaponModels();
         this.SwitchAnimationLayer(animationIndex);
-        this.CurrentWeaponModel().gameObject.SetActive(true);
+        this.playerCtrl.PlayerWeaponController.CurrentWeapon.gameObject.SetActive(true);
         this.AttachLeftHand();
     }
     public void SwitchOffWeaponModels()
@@ -113,30 +114,14 @@ public class PlayerWeaponVisuals : PlayerAbstract
         this.playerCtrl.Anim.SetLayerWeight(layerIndex, 1);
     }
 
-    public virtual WeaponModel CurrentWeaponModel()
-    {
-        WeaponModel weaponModel = null;
-
-        WeaponType weaponType = this.playerCtrl.PlayerWeaponController.CurrentWeapon.weaponData.weaponType;
-
-        for (int i = 0; i <this.playerCtrl.WeaponHolder.WeaponModels.Length; i++)
-        {
-            if (this.playerCtrl.WeaponHolder.WeaponModels[i].weaponData.weaponType == weaponType)
-                weaponModel = this.playerCtrl.WeaponHolder.WeaponModels[i];
-        }
-
-        return weaponModel;
-    }
-
-
     #region Animation Rigging Methods
 
     protected virtual void AttachLeftHand()
     {
-        Transform targetTransform = CurrentWeaponModel().holdPoint;
+        Transform targetTransform = this.playerCtrl.PlayerWeaponController.CurrentWeapon.holdPoint;
 
-        this.playerCtrl.LeftHandIKTarget.position = CurrentWeaponModel().holdPoint.position;
-        this.playerCtrl.LeftHandIKTarget.rotation = CurrentWeaponModel().holdPoint.rotation;
+        this.playerCtrl.LeftHandIKTarget.position = this.playerCtrl.PlayerWeaponController.CurrentWeapon.holdPoint.position;
+        this.playerCtrl.LeftHandIKTarget.rotation = this.playerCtrl.PlayerWeaponController.CurrentWeapon.holdPoint.rotation;
     }
 
     protected virtual void UpdateLeftHandIKWeight()

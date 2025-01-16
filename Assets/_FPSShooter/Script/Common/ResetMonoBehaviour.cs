@@ -20,7 +20,7 @@ public abstract class ResetMonoBehaviour : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        
+        this.ResetValueWhenOnEnable();
     }
 
     protected virtual void OnDisable()
@@ -34,6 +34,11 @@ public abstract class ResetMonoBehaviour : MonoBehaviour
     }
 
     protected virtual void ResetValue()
+    {
+
+    }
+
+    protected virtual void ResetValueWhenOnEnable()
     {
 
     }

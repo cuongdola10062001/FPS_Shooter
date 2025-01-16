@@ -72,8 +72,8 @@ public class WeaponModel : ResetMonoBehaviour
     #region Weapon spread variables
     [Header("Spread ")]
     private float baseSpread = 1;
-    private float maximumSpread = 3;
-    private float currentSpread = 2;
+    private float maximumSpread = 5;
+    private float currentSpread = 3;
 
     private float spreadIncreaseRate = .15f;
 

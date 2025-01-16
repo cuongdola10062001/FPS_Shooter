@@ -48,7 +48,7 @@ public class PlayerAttack : PlayerAbstract
         {
             this.FireSingleBullet();
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
 
             if (i >= this.playerCtrl.PlayerWeaponController.CurrentWeapon.BulletsPerShot)
                 this.playerCtrl.PlayerWeaponController.SetWeaponReady(true);

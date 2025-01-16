@@ -18,7 +18,7 @@ MonoBehaviour:
   equipType: 1
   holdType: 3
   bulletDamage: 80
-  shootingDistanceLimit: 8
+  shootingDistanceLimit: 10
   bulletsPerShot: 1
   fireRate: 1.5
   ammoesInMagazine: 12

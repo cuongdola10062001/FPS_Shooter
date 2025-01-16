@@ -18,6 +18,14 @@ public class Bullet : ResetMonoBehaviour
         this.disLimit = disLimit;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        BulletSpawner.Instance.Despawn(transform);
+
+        Transform bulletImpactFX = FXSpawner.Instance.Spawn(FXSpawner.BulletVFX, transform.position, Quaternion.identity);
+        bulletImpactFX.gameObject.SetActive(true);
+    }
+
 
     #region LoadComponents
     protected override void LoadComponents()

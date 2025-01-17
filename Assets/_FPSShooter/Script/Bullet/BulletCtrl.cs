@@ -17,6 +17,9 @@ public class BulletCtrl : ResetMonoBehaviour
     [SerializeField] protected BulletDespawnByDistance bulletDespawnByDistance;
     public BulletDespawnByDistance BulletDespawnByDistance => bulletDespawnByDistance;
 
+    [SerializeField] protected BulletDamageSender bulletDamageSender;
+    public BulletDamageSender BulletDamageSender => bulletDamageSender;
+
     public virtual void BulletSetp()
     {
 
@@ -33,6 +36,7 @@ public class BulletCtrl : ResetMonoBehaviour
         this.LoadBullet();
         this.LoadTrailRenderer();
         this.LoadBulletDespawnByDistance();
+        this.LoadBulletDamageSender();
     }
 
     protected virtual void LoadCollider()
@@ -72,6 +76,14 @@ public class BulletCtrl : ResetMonoBehaviour
 
         this.bulletDespawnByDistance = GetComponentInChildren<BulletDespawnByDistance>();
         Debug.LogWarning(transform.name + ": LoadBulletDespawnByDistance", gameObject);
+    }
+
+    protected virtual void LoadBulletDamageSender()
+    {
+        if (this.bulletDamageSender != null) return;
+
+        this.bulletDamageSender = GetComponentInChildren<BulletDamageSender>();
+        Debug.LogWarning(transform.name + ": LoadBulletDamageSender", gameObject);
     }
     #endregion
 

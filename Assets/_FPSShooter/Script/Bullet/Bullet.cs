@@ -22,8 +22,6 @@ public class Bullet : ResetMonoBehaviour
     {
         BulletSpawner.Instance.Despawn(transform);
 
-        Debug.LogError(collision.gameObject.name);
-
         this.bulletCtrl.BulletDamageSender.Send(collision.transform);
 
         /*Transform bulletImpactFX = FXSpawner.Instance.Spawn(FXSpawner.BulletVFX, transform.position, Quaternion.identity);

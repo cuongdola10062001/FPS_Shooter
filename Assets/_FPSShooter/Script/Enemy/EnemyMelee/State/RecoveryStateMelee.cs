@@ -1,6 +1,3 @@
-
-using UnityEngine;
-
 public class RecoveryStateMelee : EnemyState
 {
     private EnemyMelee enemy;
@@ -14,13 +11,24 @@ public class RecoveryStateMelee : EnemyState
     {
         base.Enter();
 
+
+        this.enemy.agent.isStopped = true;
     }
 
     public override void Update()
     {
         base.Update();
 
-       
+        this.enemy.FaceTarget(this.enemy.player.position);
+
+        if (this.triggerCalled)
+        {
+            if (this.enemy.PlayerInAttackRange())
+                this.stateMachine.ChangeState(this.enemy.attackState);
+            else
+                this.stateMachine.ChangeState(this.enemy.runState);
+        }
+
     }
 
     public override void Exit()

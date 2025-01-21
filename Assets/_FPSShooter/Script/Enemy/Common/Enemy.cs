@@ -17,8 +17,15 @@ public class Enemy : ResetMonoBehaviour
     public float walkSpeed = 1.5f;
     public float runSpeed = 3;
     public float turnSpeed;
+
+    public bool ManualMovement => this.manualMovement;
     private bool manualMovement;
+
+    public bool ManualRotation => this.manualRotation;
     private bool manualRotation;
+
+    public Transform player { get; private set; }
+
 
     [SerializeField] private Transform[] patrolPoints;
     private int currentPatrolIndex;
@@ -32,6 +39,7 @@ public class Enemy : ResetMonoBehaviour
 
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player").transform;
     }
 
     protected override void Start()
@@ -45,6 +53,19 @@ public class Enemy : ResetMonoBehaviour
     {
 
     }
+
+    protected virtual void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, this.aggresionRange);
+
+
+    }
+    public void ActivateManualMovement(bool manualMovement) => this.manualMovement = manualMovement;
+    public void ActivateManualRotation(bool manualRotation) => this.manualRotation = manualRotation;
+
+    public void AnimationTrigger() => this.stateMachine.currentState.AnimationTrigger();
+
+    public bool PlayerInAggresionRange() => Vector3.Distance(transform.position, this.player.position) < this.aggresionRange;
 
     public Vector3 GetPatrolDestination()
     {
@@ -71,7 +92,4 @@ public class Enemy : ResetMonoBehaviour
 
         transform.rotation = Quaternion.Euler(currentEulerAngels.x, yRotation, currentEulerAngels.z);
     }
-
-    
-
 }

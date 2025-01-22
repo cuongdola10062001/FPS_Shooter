@@ -26,7 +26,7 @@ public class MoveStateMelee : EnemyState
     {
         base.Update();
 
-        if (this.enemy.PlayerInAggresionRange())
+        if (this.enemy.IsPlayerInAggresionRange())
         {
             this.stateMachine.ChangeState(this.enemy.recoveryState);
 

@@ -54,7 +54,7 @@ public class AttackStateMelee : EnemyState
 
         if (triggerCalled)
         {
-            if (this.enemy.PlayerInAggresionRange())
+            if (this.enemy.IsPlayerInAggresionRange())
                 this.stateMachine.ChangeState(this.enemy.recoveryState);
             else
                 this.stateMachine.ChangeState(this.enemy.runState);

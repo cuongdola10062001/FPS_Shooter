@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyType { Melee,Shooter,Boss,Random}
+public enum EnemyType { Melee, Shooter, Boss, Random }
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : ResetMonoBehaviour
@@ -23,13 +23,7 @@ public class Enemy : ResetMonoBehaviour
     public bool ManualRotation => this.manualRotation;
     private bool manualRotation;
 
-    [SerializeField] private Transform[] patrolPoints;
-    private Vector3[] patrolPointsPosition;
-    private int currentPatrolIndex;
-
-    public bool inBattleMode {  get; private set; }
-    protected bool isMeleeAttackReady;
-
+    public bool inBattleMode;
 
     public Transform player { get; private set; }
 
@@ -47,17 +41,6 @@ public class Enemy : ResetMonoBehaviour
         base.Awake();
 
         this.stateMachine = new EnemyStateMachine();
-
-        anim = GetComponentInChildren<Animator>();
-        agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player").transform;
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        this.InitializePatrolPoints();
     }
 
     protected virtual void Update()
@@ -66,10 +49,15 @@ public class Enemy : ResetMonoBehaviour
             this.EnterBattleMode();
     }
 
-   
+    protected virtual void InitializePerk()
+    {
+
+    }
+
+
     protected bool ShouldEnterBattleMode()
     {
-        if(this.IsPlayerInAggresionRange() && !this.inBattleMode)
+        if (this.IsPlayerInAggresionRange() && !this.inBattleMode)
         {
             this.EnterBattleMode();
             return true;
@@ -80,11 +68,8 @@ public class Enemy : ResetMonoBehaviour
 
     public virtual void EnterBattleMode()
     {
-        inBattleMode = true;
+        this.inBattleMode = true;
     }
-
-    public void EnableMeleeAttackCheck(bool enable) => isMeleeAttackReady = enable;
-
 
 
     public void FaceTarget(Vector3 target, float turnSpeed = 0)
@@ -114,37 +99,71 @@ public class Enemy : ResetMonoBehaviour
     }
 
     #endregion
-    
-    #region Patrol logic
-    public Vector3 GetPatrolDestination()
-    {
-        Vector3 destination = patrolPoints[currentPatrolIndex].transform.position;
 
-        currentPatrolIndex++;
-
-        if (currentPatrolIndex >= patrolPoints.Length)
-            currentPatrolIndex = 0;
-
-        return destination;
-    }
-
-    private void InitializePatrolPoints()
-    {
-        patrolPointsPosition = new Vector3[patrolPoints.Length];
-
-        for (int i = 0; i < patrolPoints.Length; i++)
-        {
-            patrolPointsPosition[i] = patrolPoints[i].position;
-            patrolPoints[i].gameObject.SetActive(false);
-        }
-    }
-    #endregion
-
-   
     public bool IsPlayerInAggresionRange() => Vector3.Distance(transform.position, this.player.position) < this.aggresionRange;
 
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, this.aggresionRange);
     }
+
+    #region LoadComponents
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        this.LoadWhatIsAlly();
+        this.LoadWhatIsPlayer();
+        this.LoadAgent();
+        this.LoadAnimator();
+        this.LoadPlayer();
+    }
+
+    protected virtual void LoadWhatIsAlly()
+    {
+        if (this.whatIsAlly.value != 0) return;
+
+        int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
+        whatIsAlly = 1 << enemyLayerIndex;
+
+        Debug.LogWarning(transform.name + ": LoadWhatIsAlly", gameObject);
+    }
+
+    protected virtual void LoadWhatIsPlayer()
+    {
+        if (this.whatIsPlayer.value != 0) return;
+
+        int playerLayerIndex = LayerMask.NameToLayer("Player");
+        this.whatIsPlayer = 1 << playerLayerIndex;
+
+        Debug.LogWarning(transform.name + ": LoadWhatIsPlayer", gameObject);
+    }
+
+    protected virtual void LoadAgent()
+    {
+        if (this.agent!=null) return;
+
+        this.agent = GetComponent<NavMeshAgent>();
+
+        Debug.LogWarning(transform.name + ": LoadAgent", gameObject);
+    }
+
+    protected virtual void LoadAnimator()
+    {
+        if (this.anim != null) return;
+
+        this.anim = GetComponentInChildren<Animator>();
+
+        Debug.LogWarning(transform.name + ": LoadAnimator", gameObject);
+    }
+
+    protected virtual void LoadPlayer()
+    {
+        if (this.player != null) return;
+
+        this.player = GameObject.Find("Player").transform;
+
+        Debug.LogWarning(transform.name + ": LoadPlayer", gameObject);
+    }
+    #endregion
 }

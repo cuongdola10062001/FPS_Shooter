@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: '@Sword slash_1 (Not Read-Only)'
+  m_Name: '@Sword slash_1'
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -57070,15 +57070,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.56666666
-    functionName: StartManualMovement
+  - time: 0.73333335
+    functionName: BeginMeleeAttackCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1666666
-    functionName: StopManualMovement
+  - time: 1.0666667
+    functionName: FinishMeleeAttackCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

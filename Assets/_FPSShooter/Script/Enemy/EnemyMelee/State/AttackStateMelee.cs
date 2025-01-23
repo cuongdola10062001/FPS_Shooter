@@ -20,11 +20,11 @@ public class AttackStateMelee : EnemyState
     {
         base.Enter();
 
-        this.enemy.PullWeapon();
-
         this.attackMoveSpeed = this.enemy.attackData.moveSpeed;
         this.enemy.anim.SetFloat("AttackAnimationSpeed", this.enemy.attackData.animationSpeed);
         this.enemy.anim.SetFloat("AttackIndex", this.enemy.attackData.attackIndex);
+        this.enemy.anim.SetFloat("SlashAttackIndex", Random.Range(0, 6)); // we have 6 attacks with index from 0 to 5
+
 
 
         this.enemy.agent.isStopped = true;
@@ -41,7 +41,6 @@ public class AttackStateMelee : EnemyState
         {
             this.enemy.FaceTarget(this.enemy.player.position);
             this.attackDirection = this.enemy.transform.position + (this.enemy.transform.forward * MAX_ATTACK_DISTANCE);
-
         }
 
 
@@ -54,7 +53,9 @@ public class AttackStateMelee : EnemyState
 
         if (triggerCalled)
         {
-            if (this.enemy.IsPlayerInAggresionRange())
+            if (enemy.CanThrowAxe())
+                this.stateMachine.ChangeState(this.enemy.abilityState);
+            else if (this.enemy.PlayerInAttackRange())
                 this.stateMachine.ChangeState(this.enemy.recoveryState);
             else
                 this.stateMachine.ChangeState(this.enemy.runState);
@@ -65,25 +66,24 @@ public class AttackStateMelee : EnemyState
     public override void Exit()
     {
         base.Exit();
-        SetupNextAttack();
+
+        this.SetupNextAttack();
     }
 
     private void SetupNextAttack()
     {
         int recoveryIndex = this.PlayerClose() ? 1 : 0;
         this.enemy.anim.SetFloat("RecoveryIndex", recoveryIndex);
-
         this.enemy.attackData = this.UpdateAttackData();
     }
 
     private bool PlayerClose() => Vector3.Distance(this.enemy.transform.position, enemy.player.position) <= 1;
 
-    private AttackData UpdateAttackData()
+    private AttackData_EnemyMelee UpdateAttackData()
     {
-        List<AttackData> validAttacks = new List<AttackData>(this.enemy.attackList);
+        List<AttackData_EnemyMelee> validAttacks = new List<AttackData_EnemyMelee>(this.enemy.attackList);
 
-
-        if (PlayerClose())
+        if (this.PlayerClose())
             validAttacks.RemoveAll(parameter => parameter.attackType == AttackTypeMelee.Charge);
 
         int random = Random.Range(0, validAttacks.Count);

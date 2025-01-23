@@ -4,6 +4,7 @@ using UnityEngine;
 public class DeadStateMelee : EnemyState
 {
     private EnemyMelee enemy;
+    private bool interactionDisabled;
 
     public DeadStateMelee(Enemy enemyBase, EnemyStateMachine enemyStateMachine, string animBoolName) : base(enemyBase, enemyStateMachine, animBoolName)
     {
@@ -14,6 +15,9 @@ public class DeadStateMelee : EnemyState
     {
         base.Enter();
 
+        this.interactionDisabled = false;
+
+        this.stateTimer = 1.5f;
     }
 
     public override void Update()

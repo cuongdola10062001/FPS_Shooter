@@ -28,18 +28,12 @@ public class RunStateMelee : EnemyState
             this.stateMachine.ChangeState(this.enemy.attackState);
         }
 
-        this.enemy.FaceTarget(this.GetNextPathPoint());
+        this.enemy.FaceTarget(this.enemy.player.transform.position);
 
         if (this.CanUpdateDestination())
         {
             this.enemy.agent.destination = this.enemy.player.transform.position;
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
     }
 
     private bool CanUpdateDestination()

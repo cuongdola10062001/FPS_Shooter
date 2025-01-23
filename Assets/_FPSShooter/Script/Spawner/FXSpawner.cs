@@ -8,6 +8,7 @@ public class FXSpawner : Spawner
     public static FXSpawner Instance => instance;
 
     public static string BulletVFX = "Bullet_VFX";
+    public static string AxeVFX = "Axe_VFX";
 
     protected override void Awake()
     {

@@ -1,7 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyType { Melee, Shooter, Boss, Random }
+public enum EnemyType
+{
+    Melee,
+    Box,
+    Hammer,
+    Shooter,
+    Boss,
+    Random
+}
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : ResetMonoBehaviour
@@ -141,7 +149,7 @@ public class Enemy : ResetMonoBehaviour
 
     protected virtual void LoadAgent()
     {
-        if (this.agent!=null) return;
+        if (this.agent != null) return;
 
         this.agent = GetComponent<NavMeshAgent>();
 

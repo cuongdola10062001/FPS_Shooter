@@ -119,6 +119,17 @@ public class EnemyMelee : Enemy
         this.stateMachine.currentState.Update();
     }
 
+    /*public void UpdateAttackData()
+    {
+        currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
+
+        if (currentWeapon.weaponData != null)
+        {
+            attackList = new List<AttackData_EnemyMelee>(currentWeapon.weaponData.attackData);
+            turnSpeed = currentWeapon.weaponData.turnSpeed;
+        }
+    }*/
+
     protected override void InitializePerk()
     {
         if(this.meleeType == EnemyMelee_Type.AxeThrow)

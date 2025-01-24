@@ -20,6 +20,8 @@ public class AttackStateMelee : EnemyState
     {
         base.Enter();
 
+
+
         this.attackMoveSpeed = this.enemy.attackData.moveSpeed;
         this.enemy.anim.SetFloat("AttackAnimationSpeed", this.enemy.attackData.animationSpeed);
         this.enemy.anim.SetFloat("AttackIndex", this.enemy.attackData.attackIndex);
@@ -74,12 +76,12 @@ public class AttackStateMelee : EnemyState
     {
         int recoveryIndex = this.PlayerClose() ? 1 : 0;
         this.enemy.anim.SetFloat("RecoveryIndex", recoveryIndex);
-        this.enemy.attackData = this.UpdateAttackData();
+        //this.enemy.attackData = this.UpdateAttackData();
     }
 
-    private bool PlayerClose() => Vector3.Distance(this.enemy.transform.position, enemy.player.position) <= 1;
+    private bool PlayerClose() => Vector3.Distance(this.enemy.transform.position, enemy.player.position) <= this.enemy.attackData.attackRange;
 
-    private AttackData_EnemyMelee UpdateAttackData()
+    /*private AttackData_EnemyMelee UpdateAttackData()
     {
         List<AttackData_EnemyMelee> validAttacks = new List<AttackData_EnemyMelee>(this.enemy.attackList);
 
@@ -89,5 +91,5 @@ public class AttackStateMelee : EnemyState
         int random = Random.Range(0, validAttacks.Count);
 
         return validAttacks[random];
-    }
+    }*/
 }

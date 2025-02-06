@@ -14,7 +14,7 @@ public class IdleStateMelee : EnemyState
     {
         base.Enter();
 
-        this.stateTimer = this.enemyBase.idleTime;
+        this.stateTimer = this.enemy.idleTime;
     }
 
     public override void Update()

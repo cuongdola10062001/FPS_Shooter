@@ -68,7 +68,7 @@ public class EnemyMelee : Enemy
 
     [Header("Axe throw ability")] //khả năng ném rìu, ném kiếm,...
     public int axeDamage;
-    public GameObject axePrefab;
+    //public GameObject axePrefab;
     public float axeFlySpeed;
     public float axeAnimTimer;
     public float axeThrowCooldown;
@@ -163,7 +163,7 @@ public class EnemyMelee : Enemy
     #region Throw Axe
     public bool CanThrowAxe()
     {
-        if(this.meleeType !=EnemyMelee_Type.AxeThrow) return false;
+        /*if(this.meleeType !=EnemyMelee_Type.AxeThrow) return false;
 
         if(Time.time >this.axeThrowCooldown + this.lastTimeAxeThrown)
         {
@@ -171,7 +171,9 @@ public class EnemyMelee : Enemy
             return true;
         }
 
-        return false;
+        return false;*/
+
+        return true;
     }
 
     public void ThrowAxe()

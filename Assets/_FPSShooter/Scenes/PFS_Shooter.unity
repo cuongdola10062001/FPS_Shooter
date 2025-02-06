@@ -1468,6 +1468,37 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 1434622664}
   attackRadius: 0.3
+--- !u!1 &1070064873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070064874}
+  m_Layer: 11
+  m_Name: AxeStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070064874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070064873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.141, z: 0.609}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7326759849499216348}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1080388549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8881934433686824771, guid: 868cc1a13997d2a408bc292c465e6ba2, type: 3}
@@ -8050,8 +8081,28 @@ PrefabInstance:
       value: Enemy_Melee
       objectReference: {fileID: 0}
     - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      propertyPath: axeDamage
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      propertyPath: axeFlySpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      propertyPath: axeAnimTimer
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
       propertyPath: hiddenWeapon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      propertyPath: axeStartPoint
+      value: 
+      objectReference: {fileID: 1070064874}
+    - target: {fileID: 2501013612504884047, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      propertyPath: axeThrowCooldown
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3138936190498782208, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8144,7 +8195,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8180462908680382324, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3845228623447271440, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1070064874}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 366049010604160603, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
       insertIndex: -1
@@ -8171,6 +8225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e689712ab3ce44b57f4331063b0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7326759849499216348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3845228623447271440, guid: a314409d8be6f0b45af179f0ca08989e, type: 3}
+  m_PrefabInstance: {fileID: 7326759849499216341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7573504227605227769
 Transform:
   m_ObjectHideFlags: 0

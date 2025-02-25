@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Weapon_Auto-Rifle
   m_EditorClassIdentifier: 
   weaponName: Blaster K-567
-  weaponType: 3
-  shootType: 2
+  weaponType: 1
   equipType: 1
   holdType: 1
+  meleeType: 0
+  meleeDamage: 0
+  meleeRange: 0
+  attackSpeed: 0
+  weaponGunType: 3
+  shootType: 2
   bulletDamage: 12
   shootingDistanceLimit: 8
   bulletsPerShot: 1

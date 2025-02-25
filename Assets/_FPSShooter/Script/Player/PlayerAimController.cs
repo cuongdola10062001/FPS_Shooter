@@ -26,7 +26,7 @@ public class PlayerAimController : PlayerAbstract
         if (this.aimLaser.enabled == false)
             return;
 
-        WeaponModel weaponModel = this.playerCtrl.PlayerWeaponController.CurrentWeapon;
+        WeaponGunModel weaponModel = this.playerCtrl.PlayerWeaponController.CurrentWeapon;
 
         Transform gunPoint = weaponModel.gunPoint;
         Vector3 laserDirection = this.playerCtrl.PlayerAttack.BulletDirection();

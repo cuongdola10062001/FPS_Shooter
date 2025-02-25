@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Weapon_Revolver
   m_EditorClassIdentifier: 
   weaponName: Bolt R-7
-  weaponType: 2
-  shootType: 1
+  weaponType: 1
   equipType: 0
   holdType: 1
+  meleeType: 0
+  meleeDamage: 0
+  meleeRange: 0
+  attackSpeed: 0
+  weaponGunType: 2
+  shootType: 1
   bulletDamage: 35
   shootingDistanceLimit: 8
   bulletsPerShot: 1

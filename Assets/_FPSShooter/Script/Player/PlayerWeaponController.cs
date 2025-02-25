@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerWeaponController : PlayerAbstract
 {
-    public WeaponModel CurrentWeapon => currentWeapon;
-    [SerializeField] protected WeaponModel currentWeapon;
+    public WeaponGunModel CurrentWeapon => currentWeapon;
+    [SerializeField] protected WeaponGunModel currentWeapon;
 
     private bool weaponReady;
     public bool WeaponReady => weaponReady;

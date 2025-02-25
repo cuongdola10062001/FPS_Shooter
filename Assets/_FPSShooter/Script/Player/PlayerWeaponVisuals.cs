@@ -81,11 +81,11 @@ public class PlayerWeaponVisuals : PlayerAbstract
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
         {
 
-            if (backupModel.weaponType == player.weapon.CurrentWeapon().weaponType)
+            if (backupModel.weaponGunType == player.weapon.CurrentWeapon().weaponGunType)
                 continue;
 
 
-            if (player.weapon.WeaponInSlots(backupModel.weaponType) != null)
+            if (player.weapon.WeaponInSlots(backupModel.weaponGunType) != null)
             {
                 if (backupModel.HangTypeIs(HangType.LowBackHang))
                     lowHangWeapon = backupModel;

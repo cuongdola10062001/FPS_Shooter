@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Heaven 567
   weaponType: 1
-  shootType: 1
   equipType: 0
   holdType: 1
+  meleeType: 0
+  meleeDamage: 0
+  meleeRange: 0
+  attackSpeed: 0
+  weaponGunType: 1
+  shootType: 1
   bulletDamage: 18
   shootingDistanceLimit: 8
   bulletsPerShot: 1
